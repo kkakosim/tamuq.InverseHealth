@@ -3,10 +3,10 @@ examples='Q';
 switch examples
     case 'Solve'
         %% Examples of Running Code
-        [Qmean,RESmean]=SolveV4(2,7,100,2,14,100,'C'); % find Q using concentration
+        %[Qmean,RESmean]=SolveV4(2,7,100,1000,14,1001,'C'); % find Q using concentration
         % [Qmean,RESmean]=SolveV4(2,2,20,10,10,5,30,'TL'); % find Q using Toxic Load
         % [Qmean,RESmean]=SolveV4(2,2,20,10,10,5,30,'HE'); % find Q using Toxic Load
-        % [Res,FSrc]=SolveV4_loc(2,2,20,10,'C'); % find Location using concentration
+         [Res]=SolveV4_loc(2,7,100,1000,'C'); % find Location using concentration
         % [Res,FSrc]=SolveV4_loc(2,2,20,10,'TL'); % find Location using Toxic Load
         % [Res,FSrc]=SolveV4_loc(2,2,20,10,'HE'); % find Location using Toxic Load
     
@@ -14,18 +14,18 @@ switch examples
         %% TEST of Location Identification
         %   Runs should be already done
 
-        x=0:25:2000;
-        y=0:25:1000;
-        Src.x=500;
-        Src.y=300;
+        x=0:25:2000; % Domain & grid
+        y=0:25:1000; % Domain & grid
+        Src.x=500;   % Lx
+        Src.y=300;   % Ly
         [fgh]=figure;
         hold on;
 
         %GET DATA
-        NRecS=12;
-        NStep=10;
-        NRecE=62;
-        NIter=10;
+        NRecS=2;
+        NStep=7;
+        NRecE=100;
+        NIter=1000;
         CorTL='C'; % change to C or TL or HE
         fileNameBase=strcat('output_1/Loc_',CorTL,'_i',int2str(NIter));
 
@@ -67,16 +67,16 @@ switch examples
 
         %GET DATA
         NRecS=2;
-        NStep=10;
-        NRecE=92;
-        NIterS=100;
-        NItStep=300;
-        NIterE=400;
-        CorTL='HE'; % change to C or TL
+        NStep=7;
+        NRecE=100;
+        NIterS=1000;
+        NItStep=1000;
+        NIterE=1000;
+        CorTL='C'; % change to C or TL
         fileNameBase=strcat('output_1/Q_',CorTL);
 
         Receptors=NRecS:NStep:NRecE;
-        Iterations=[10 100 400];%NIterS:NItStep:NIterE;
+        Iterations=[1000 1000 1000];%NIterS:NItStep:NIterE;
         
         sQguessALL=zeros(NIterE,numel(Receptors));
         
@@ -110,8 +110,8 @@ end
 
 %% Plot Q Mean
 %figure;
-it1=1;
-Iterations(it1)
+it1=1000;
+Iterations(it1);
 X=[Receptors,fliplr(Receptors)];                %#create continuous x value array for plotting
 Ay1=meanQGUESS(:,it1)-stdevQGUESS(:,it1);
 Ay2=meanQGUESS(:,it1)+stdevQGUESS(:,it1);
@@ -124,8 +124,8 @@ set(h,'LineStyle','none');
 hold on;
 
 
-it2=7;
-Iterations(it2)
+it2=1000;
+Iterations(it2);
 X=[Receptors,fliplr(Receptors)];                %#create continuous x value array for plotting
 By1=meanQGUESS(:,it2)-stdevQGUESS(:,it2);
 By2=meanQGUESS(:,it2)+stdevQGUESS(:,it2);

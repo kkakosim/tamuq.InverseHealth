@@ -58,7 +58,7 @@ parfor_progress(fileNameProg,numel(Iterations)*length(x));
 
 %parpool(2);
 
-parfor iR=1:numel(Iterations)
+for iR=1:numel(Iterations)
 iRec=Iterations(iR);
    
     iREF=find(REF>0);
@@ -80,9 +80,8 @@ iRec=Iterations(iR);
 %% RUN ITERATIONS
     N = size(xrand,1);
     Res=zeros(numel(x),numel(y));
-    FSrc=zeros(2);
-    FSrc(1)=mean(x);
-    FSrc(2)=mean(y);
+    FSrc.x=mean(x);
+    FSrc.y=mean(y);
     minRes=100;
     for ix=1:length(x)
          for iy=1:length(y)
@@ -97,8 +96,8 @@ iRec=Iterations(iR);
             end
             Res(ix,iy)=mean(CorRes);
             if abs((1-Res(ix,iy))/Res(ix,iy))<minRes
-                FSrc(1)=x(ix);
-                FSrc(2)=y(iy);
+                FSrc.x=x(ix);
+                FSrc.y=y(iy);
                 minRes=abs((1-Res(ix,iy))/Res(ix,iy));
             end
          end
