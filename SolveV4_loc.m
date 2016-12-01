@@ -10,7 +10,7 @@ function [Res]=SolveV4_loc(NRecS,NStep,NRecE,NIter,CorTL)
 %% SET GLOBAL Parameters
 x=0:25:2000;
 y=0:25:1000;
-t=100;
+t=600;
 z=2;
 Src.x=500;
 Src.y=300;
