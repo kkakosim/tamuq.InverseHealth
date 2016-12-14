@@ -58,7 +58,7 @@ parfor_progress(fileNameProg,numel(Iterations)*length(x));
 
 %parpool(2);
 
-parfor iR=1:numel(Iterations)
+for iR=1:numel(Iterations)
 iRec=Iterations(iR);
    
     iREF=find(REF>0);
@@ -84,7 +84,7 @@ iRec=Iterations(iR);
     FSrc(1)=mean(x);
     FSrc(2)=mean(y);
     minRes=100;
-    for ix=1:length(x)
+    parfor ix=1:length(x)
          for iy=1:length(y)
             ixB=ix-BSrc.ixB;
             iyB=iy-BSrc.iyB;
